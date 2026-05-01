@@ -657,7 +657,7 @@ class Validation:
         if not (self.mutation_type is None):
             if mutation_num_genes is None:
                 # The mutation_num_genes parameter does not exist. Checking whether adaptive mutation is used.
-                if mutation_type != "adaptive":
+                if adaptive_mutation == False:
                     # The percent of genes to mutate is fixed not adaptive.
                     if mutation_percent_genes == 'default'.lower():
                         mutation_percent_genes = 10
@@ -728,7 +728,7 @@ class Validation:
                             self.valid_parameters = False
                             raise TypeError(f"Unexpected type of the 'mutation_percent_genes' parameter. When mutation_type='adaptive', then the 'mutation_percent_genes' parameter should exist and assigned a list/tuple/numpy.ndarray with 2 values but ({mutation_percent_genes}) found.")
             # The mutation_num_genes parameter exists. Checking whether adaptive mutation is used.
-            elif mutation_type != "adaptive":
+            elif adaptive_mutation == False:
                 # Number of genes to mutate is fixed not adaptive.
                 if type(mutation_num_genes) in self.supported_int_types:
                     if mutation_num_genes <= 0:
