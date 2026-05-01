@@ -23,6 +23,7 @@ class Validation:
                             crossover_type,
                             crossover_probability,
                             mutation_type,
+                            adaptive_mutation,
                             mutation_probability,
                             mutation_by_replacement,
                             mutation_percent_genes,
@@ -614,7 +615,7 @@ class Validation:
         if not (self.mutation_type is None):
             if mutation_probability is None:
                 self.mutation_probability = None
-            elif mutation_type != "adaptive":
+            elif adaptive_mutation == False:
                 # Mutation probability is fixed not adaptive.
                 if type(mutation_probability) in self.supported_int_float_types:
                     if 0 <= mutation_probability <= 1:
